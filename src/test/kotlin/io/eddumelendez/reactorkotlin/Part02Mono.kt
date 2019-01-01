@@ -15,10 +15,8 @@ class Part02Mono {
                 .verifyComplete()
     }
 
-    // TODO Return an empty Mono
-    fun emptyMono(): Mono<String> {
-        return null!!
-    }
+    // Return an empty Mono
+    fun emptyMono(): Mono<String> = Mono.empty()
 
     @Test
     fun noSignal() {
@@ -31,10 +29,8 @@ class Part02Mono {
                 .verify()
     }
 
-    // TODO Return an Mono that never emit any signal
-    fun monoWithNoSignal(): Mono<String> {
-        return null!!
-    }
+    // Return an Mono that never emit any signal
+    fun monoWithNoSignal(): Mono<String> = Mono.never()
 
     @Test
     fun error() {
@@ -44,9 +40,7 @@ class Part02Mono {
                 .verifyError(IllegalStateException::class.java)
     }
 
-    // TODO Create a Mono that emits an IllegalStateException
-    fun errorMono(): Mono<String> {
-        return null!!
-    }
+    // Create a Mono that emits an IllegalStateException
+    fun errorMono(): Mono<String> = Mono.error(IllegalStateException())
 
 }

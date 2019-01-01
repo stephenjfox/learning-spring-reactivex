@@ -3,6 +3,7 @@ package io.eddumelendez.reactorkotlin
 import org.junit.Test
 import reactor.core.publisher.Flux
 import reactor.test.test
+import java.time.Duration
 
 class Part01Flux {
 
@@ -14,10 +15,8 @@ class Part01Flux {
                 .verifyComplete()
     }
 
-    // TODO Return an empty Flux
-    fun emptyFlux(): Flux<String> {
-        return null!!
-    }
+    // Return an empty Flux
+    fun emptyFlux(): Flux<String> = Flux.empty()
 
     @Test
     fun fromValues() {
@@ -28,10 +27,8 @@ class Part01Flux {
                 .verifyComplete()
     }
 
-    // TODO Return a Flux that contains 2 values "foo" and "bar" without using an array or a collection
-    fun fooBarFluxFromValue(): Flux<String> {
-        return null!!
-    }
+    // Return a Flux that contains 2 values "foo" and "bar" without using an array or a collection
+    fun fooBarFluxFromValue(): Flux<String> = Flux.just("foo", "bar")
 
     @Test
     fun fromList() {
@@ -42,10 +39,8 @@ class Part01Flux {
                 .verifyComplete()
     }
 
-    // TODO Create a Flux from a List that contains 2 values "foo" and "bar"
-    fun fooBarFluxFromList(): Flux<String> {
-        return null!!
-    }
+    // Create a Flux from a List that contains 2 values "foo" and "bar"
+    fun fooBarFluxFromList(): Flux<String> = Flux.fromIterable(listOf("foo", "bar"))
 
     @Test
     fun error() {
@@ -55,10 +50,8 @@ class Part01Flux {
                 .verifyError(IllegalStateException::class.java)
     }
 
-    // TODO Create a Flux that emits an IllegalStateException
-    fun errorFlux(): Flux<String> {
-        return null!!
-    }
+    // Create a Flux that emits an IllegalStateException
+    fun errorFlux(): Flux<String> = Flux.error(IllegalStateException())
 
     @Test
     fun countEach100ms() {
@@ -69,9 +62,7 @@ class Part01Flux {
                 .verifyComplete()
     }
 
-    // TODO Create a Flux that emits increasing values from 0 to 9 each 100ms
-    fun counter(): Flux<Long> {
-        return null!!
-    }
+    // Create a Flux that emits increasing values from 0 to 9 each 100ms
+    fun counter(): Flux<Long> = Flux.interval(Duration.ofMillis(100)).take(10)
 
 }

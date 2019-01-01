@@ -21,10 +21,10 @@ class Part04Transform {
                 .verifyComplete()
     }
 
-    // TODO Capitalize the user username, firstname and lastname
-    fun capitalizeOne(mono: Mono<User>): Mono<User> {
-        return null!!
-    }
+    fun getSyncCapitalizeUser(u: User)= User(u.username.toUpperCase(), u.firstname?.toUpperCase(), u.lastname?.toUpperCase())
+
+    // Capitalize the user username, firstname and lastname
+    fun capitalizeOne(mono: Mono<User>): Mono<User> = mono.map(::getSyncCapitalizeUser)
 
     @Test
     fun transformFlux() {
@@ -39,10 +39,8 @@ class Part04Transform {
                 .verifyComplete()
     }
 
-    // TODO Capitalize the users username, firstName and lastName
-    fun capitalizeMany(flux: Flux<User>): Flux<User> {
-        return null!!
-    }
+    // Capitalize the users username, firstName and lastName
+    fun capitalizeMany(flux: Flux<User>): Flux<User> = flux.map(::getSyncCapitalizeUser)
 
     @Test
     fun asyncTransformFlux() {
@@ -57,10 +55,8 @@ class Part04Transform {
                 .verifyComplete()
     }
 
-    // TODO Capitalize the users username, firstName and lastName using asyncCapitalizeUser()
-    fun asyncCapitalizeMany(flux: Flux<User>): Flux<User> {
-        return null!!
-    }
+    // Capitalize the users username, firstName and lastName using asyncCapitalizeUser()
+    fun asyncCapitalizeMany(flux: Flux<User>): Flux<User> = flux.flatMap(::asyncCapitalizeUser)
 
     fun asyncCapitalizeUser(user: User): Mono<User> {
         return User(user.username.toUpperCase(), user.firstname?.toUpperCase(), user.lastname?.toUpperCase()).toMono()

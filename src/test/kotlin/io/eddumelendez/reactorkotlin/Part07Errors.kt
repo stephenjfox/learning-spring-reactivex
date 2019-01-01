@@ -24,9 +24,9 @@ class Part07Errors {
 
     }
 
-    // TODO Return a Mono<User> containing User.SAUL when an error occurs in the input Mono, else do not change the input Mono.
+    // Return a Mono<User> containing User.SAUL when an error occurs in the input Mono, else do not change the input Mono.
     fun betterCallSaulForBogusMono(mono: Mono<User>): Mono<User> {
-        return null!!
+        return mono.onErrorReturn(User.SAUL)
     }
 
     @Test
@@ -42,9 +42,9 @@ class Part07Errors {
                 .verifyComplete()
     }
 
-    // TODO Return a Flux<User> containing User.SAUL and User.JESSE when an error occurs in the input Flux, else do not change the input Flux.
+    // Return a Flux<User> containing User.SAUL and User.JESSE when an error occurs in the input Flux, else do not change the input Flux.
     fun betterCallSaulAndJesseForBogusFlux(flux: Flux<User>): Flux<User> {
-        return null!!
+        return flux.onErrorResume({ true }, { Flux.just(User.SAUL, User.JESSE) })
     }
 
     @Test
@@ -55,9 +55,9 @@ class Part07Errors {
                 .verifyError(GetOutOfHereException::class.java)
     }
 
-    // TODO Implement a method that capitalize each user of the incoming flux using the capitalizeUser() method and emit an error containing a GetOutOfHereException exception
+    // Implement a method that capitalize each user of the incoming flux using the capitalizeUser() method and emit an error containing a GetOutOfHereException exception
     fun capitalizeMany(flux: Flux<User>): Flux<User> {
-        return null!!
+        return flux.map(::capitalizeUser)
     }
 
     @Throws(GetOutOfHereException::class)
